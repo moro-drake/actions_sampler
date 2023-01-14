@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        action: [lint, test, e2e]
+    steps:
+      - name: lint
+        if:  ${{ matrix.lint }}
+		    run: echo "lint"
+      - name: test
+        if: ${{ matrix.test }}
+		    run: echo "test"
+        
+      - name: e2e
+        if:  ${{ matrix.e2e }}
+		    run: echo "e2e"
