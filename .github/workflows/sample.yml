@@ -13,13 +13,12 @@ jobs:
       matrix:
         action: [lint, test, e2e]
     steps:
-      - name: lint
-        if:  ${{ matrix.lint }}
-		    run: echo "lint"
-      - name: test
-        if: ${{ matrix.test }}
-		    run: echo "test"
-        
-      - name: e2e
-        if:  ${{ matrix.e2e }}
-		    run: echo "e2e"
+    - name: lint
+      if:  ${{ matrix.lint }}
+      run: echo "lint"
+    - name: test
+      if: ${{ matrix.test }}
+      run: echo "test"    
+    - name: e2e
+      if:  ${{ matrix.e2e }}
+      run: echo "e2e"
