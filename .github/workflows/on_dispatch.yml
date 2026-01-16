@@ -1,0 +1,28 @@
+name: Input parser
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline:
+        description: 'Pipelines to run'
+        required: true
+        type: choice
+        options:
+        - a-bar
+        - b-foo
+        - c-baz
+
+jobs:
+  cli_trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: parse input
+      env:
+        JOB: ${{ inputs.pipeline }}
+        BRANCH: ${{ github.ref_name }}
+        COMMIT: ${{ github.sha }}
+      run: |
+        echo "Running pipeline: $JOB, against branch: ${{ github.ref_name }}, commit: $COMMIT"
+
+
